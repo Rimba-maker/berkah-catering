@@ -1,0 +1,295 @@
+---
+import { Leaf } from '@phosphor-icons/react/dist/ssr';
+
+const links = [
+  { label: 'Layanan',         href: '#layanan' },
+  { label: 'Paket Aqiqah',   href: '#paket-aqiqah' },
+  { label: 'Paket Syukuran', href: '#paket-syukuran' },
+  { label: 'Menu',            href: '#menu' },
+  { label: 'Hubungi',         href: '#konsultasi' },
+];
+---
+
+<style>
+  #navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: transparent;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+
+  .nav-inner {
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 768px) {
+    .nav-inner { height: 80px; padding: 0 32px; }
+  }
+
+  /* Logo */
+  #nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 18px;
+    font-family: 'DM Serif Display', Georgia, serif;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Desktop nav */
+  #nav-links {
+    display: none;
+    align-items: center;
+    gap: 28px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    #nav-links { display: flex; }
+  }
+
+  .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.90);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover { color: #ffffff; }
+
+  /* Right side */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  /* CTA button */
+  #nav-cta {
+    display: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+    background: #40916C;
+    border-radius: 50px;
+    padding: 10px 22px;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  #nav-cta:hover { background: #2D6A4F; }
+
+  @media (min-width: 768px) {
+    #nav-cta { display: inline-block; }
+  }
+
+  /* Hamburger */
+  #hamburger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    #hamburger { display: none; }
+  }
+
+  .hb-line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: #ffffff;
+    transform-origin: center;
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+
+  /* Mobile menu */
+  #mobile-menu {
+    background: #1B3A2D;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  @media (min-width: 768px) {
+    #mobile-menu { display: none; }
+  }
+
+  .mobile-menu-inner {
+    padding: 8px 20px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: 15px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: color 0.2s;
+  }
+
+  .mobile-nav-link:hover { color: #ffffff; }
+
+  .mobile-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 14px 24px;
+    background: #40916C;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    min-height: 48px;
+    transition: background 0.2s;
+  }
+
+  .mobile-cta:hover { background: #2D6A4F; }
+</style>
+
+<header id="navbar">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="/" id="nav-logo">
+      <span id="nav-leaf" style="color:#C9A84C; display:flex; align-items:center; flex-shrink:0;">
+        <Leaf size={20} weight="bold" />
+      </span>
+      Berkah Catering
+    </a>
+
+    <!-- Desktop nav -->
+    <nav id="nav-links">
+      {links.map(({ label, href }) => (
+        <a href={href} class="nav-link">{label}</a>
+      ))}
+    </nav>
+
+    <!-- Right: CTA + Hamburger -->
+    <div class="nav-right">
+      <a href="#konsultasi" id="nav-cta">Konsultasi Gratis</a>
+
+      <button id="hamburger" aria-label="Buka menu" aria-expanded="false">
+        <span class="hb-line" id="hb-top"></span>
+        <span class="hb-line" id="hb-mid"></span>
+        <span class="hb-line" id="hb-bot"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu">
+    <div class="mobile-menu-inner">
+      {links.map(({ label, href }) => (
+        <a href={href} class="mobile-nav-link">{label}</a>
+      ))}
+      <a href="#konsultasi" class="mobile-nav-link mobile-cta">Konsultasi Gratis</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const navbar    = document.getElementById('navbar')!;
+  const logo      = document.getElementById('nav-logo')!;
+  const leaf      = document.getElementById('nav-leaf')!;
+  const cta       = document.getElementById('nav-cta')!;
+  const navLinks  = document.querySelectorAll<HTMLElement>('.nav-link');
+  const hamburger = document.getElementById('hamburger')!;
+  const menu      = document.getElementById('mobile-menu')!;
+  const mobLinks  = document.querySelectorAll('.mobile-nav-link');
+  const hbTop     = document.getElementById('hb-top')!;
+  const hbMid     = document.getElementById('hb-mid')!;
+  const hbBot     = document.getElementById('hb-bot')!;
+
+  let isOpen = false;
+
+  function setScrolled(scrolled: boolean) {
+    if (scrolled) {
+      navbar.style.background   = '#F5F3EC';
+      navbar.style.boxShadow    = '0 1px 3px rgba(0,0,0,0.08)';
+      logo.style.color          = '#1A2E1F';
+      leaf.style.color          = '#2D6A4F';
+      cta.style.color           = '#ffffff';
+      navLinks.forEach(l => { l.style.color = 'rgba(26,46,31,0.75)'; });
+      if (!isOpen) setHamburgerColor('#1B3A2D', 'rgba(45,106,79,0.12)');
+    } else {
+      navbar.style.background   = 'transparent';
+      navbar.style.boxShadow    = 'none';
+      logo.style.color          = '#ffffff';
+      leaf.style.color          = '#C9A84C';
+      cta.style.color           = '#ffffff';
+      navLinks.forEach(l => { l.style.color = 'rgba(255,255,255,0.90)'; });
+      if (!isOpen) setHamburgerColor('#ffffff', 'rgba(255,255,255,0.15)');
+    }
+  }
+
+  function setHamburgerColor(lineColor: string, bg: string) {
+    [hbTop, hbMid, hbBot].forEach(l => { l.style.background = lineColor; });
+    hamburger.style.background = bg;
+  }
+
+  function openMenu() {
+    isOpen = true;
+    menu.style.maxHeight = menu.scrollHeight + 'px';
+    hbTop.style.transform = 'translateY(7px) rotate(45deg)';
+    hbMid.style.opacity   = '0';
+    hbMid.style.transform = 'scaleX(0)';
+    hbBot.style.transform = 'translateY(-7px) rotate(-45deg)';
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', 'Tutup menu');
+    hamburger.style.background = 'rgba(64,145,108,0.40)';
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    menu.style.maxHeight = '0';
+    hbTop.style.transform = '';
+    hbMid.style.opacity   = '';
+    hbMid.style.transform = '';
+    hbBot.style.transform = '';
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Buka menu');
+    const scrolled = window.scrollY > 60;
+    setHamburgerColor(scrolled ? '#1B3A2D' : '#ffffff', scrolled ? 'rgba(45,106,79,0.12)' : 'rgba(255,255,255,0.15)');
+  }
+
+  window.addEventListener('scroll', () => setScrolled(window.scrollY > 60), { passive: true });
+  hamburger.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
+  mobLinks.forEach(l => l.addEventListener('click', () => closeMenu()));
+</script>

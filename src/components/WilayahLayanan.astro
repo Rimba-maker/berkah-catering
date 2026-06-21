@@ -1,0 +1,60 @@
+---
+const areas = [
+  { status: '✅', nama: 'Kota Padang & sekitarnya', note: 'Free ongkir' },
+  { status: '✅', nama: 'Pariaman, Padang Panjang, Solok', note: 'Ongkir sesuai jarak' },
+  { status: '✅', nama: 'Bukittinggi, Payakumbuh', note: 'Add-on biaya tim' },
+  { status: '📞', nama: 'Luar area', note: 'Hubungi kami untuk kesepakatan' },
+];
+
+const booking = [
+  { label: 'Aqiqah', min: 'H-7', desc: 'Agar kambing bisa dipersiapkan' },
+  { label: 'Syukuran & Tahlil Standar', min: 'H-3', desc: 'Untuk persiapan optimal' },
+  { label: 'Syukuran & Tahlil Premium', min: 'H-7', desc: 'Untuk persiapan lebih matang' },
+];
+---
+
+<section id="wilayah" style="background: #F5F3EC; padding: 96px 24px;">
+  <div style="max-width: 960px; margin: 0 auto;">
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 48px;">
+
+      <!-- Wilayah -->
+      <div>
+        <h2 style="font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(28px,3.5vw,40px); color: #2D6A4F; margin-bottom: 32px; line-height: 1.25;">
+          Kami Melayani Area:
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          {areas.map(({ status, nama, note }) => (
+            <div style="display: flex; align-items: center; justify-content: space-between; background: #ffffff; border-radius: 12px; padding: 14px 18px; border: 1px solid rgba(0,0,0,0.05); gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 16px;">{status}</span>
+                <span style="font-size: 14px; font-weight: 600; color: #1A2E1F;">{nama}</span>
+              </div>
+              <span style="font-size: 12px; color: rgba(26,46,31,0.50); white-space: nowrap;">{note}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Booking minimum -->
+      <div>
+        <h3 style="font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(24px,3vw,32px); color: '#2D6A4F'; margin-bottom: 32px; line-height: 1.25; color: #2D6A4F;">
+          Booking Minimum:
+        </h3>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          {booking.map(({ label, min, desc }) => (
+            <div style="background: #ffffff; border-radius: 12px; padding: 18px 20px; border: 1px solid rgba(0,0,0,0.05);">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 4px;">
+                <span style="font-size: 13px; font-weight: 700; background: #40916C; color: white; padding: 3px 10px; border-radius: 50px;">
+                  {min}
+                </span>
+                <span style="font-size: 14px; font-weight: 600; color: #1A2E1F;">{label}</span>
+              </div>
+              <p style="font-size: 13px; color: rgba(26,46,31,0.55); padding-left: 2px;">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

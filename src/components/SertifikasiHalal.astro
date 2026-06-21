@@ -1,0 +1,55 @@
+---
+const trustCards = [
+  {
+    icon: '🏅',
+    label: 'Halal MUI Tersertifikasi',
+    desc: 'Dapur & bahan baku tersertifikasi oleh MUI.',
+  },
+  {
+    icon: '🐑',
+    label: 'Kambing Sehat & Layak',
+    desc: 'Dicek veteriner, bukan kambing sakit atau cacat.',
+  },
+  {
+    icon: '🧼',
+    label: 'Standar Kebersihan Dapur',
+    desc: 'HACCP compliant, dicek berkala, higienitas terjaga.',
+  },
+  {
+    icon: '📜',
+    label: 'Sertifikat Penyembelihan',
+    desc: 'Diberikan ke keluarga sebagai bukti syar\'i.',
+  },
+];
+---
+
+<section id="halal" style="background: #1B3A2D; padding: 96px 24px;">
+  <div style="max-width: 1152px; margin: 0 auto;">
+
+    <!-- Heading -->
+    <div style="text-align: center; margin-bottom: 64px;">
+      <h2 style="font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(32px,4vw,48px); color: #ffffff; margin-bottom: 16px; line-height: 1.2;">
+        Halal. Bersih. Amanah.
+      </h2>
+      <p style="font-size: 18px; color: rgba(255,255,255,0.70); max-width: 560px; margin: 0 auto; line-height: 1.75;">
+        Kami memahami bahwa aqiqah dan syukuran adalah ibadah — bukan sekadar makan-makan.
+        Karena itu, kami pastikan setiap proses memenuhi standar syariah dan kebersihan.
+      </p>
+    </div>
+
+    <!-- Trust cards grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 20px;">
+      {trustCards.map(({ icon, label, desc }) => (
+        <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 28px 24px;">
+          <span style="font-size: 32px; display: block; margin-bottom: 16px;">{icon}</span>
+          <h3 style="font-size: 16px; font-weight: 700; color: #C9A84C; margin-bottom: 8px; line-height: 1.4;">
+            {label}
+          </h3>
+          <p style="font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.65;">
+            {desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

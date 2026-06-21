@@ -1,0 +1,71 @@
+---
+const steps = [
+  {
+    no: '01',
+    icon: '💬',
+    label: 'Konsultasi (Gratis)',
+    desc: 'Ceritakan acara, tanggal, jumlah tamu, dan budget. Kami bantu tentukan paket yang pas.',
+  },
+  {
+    no: '02',
+    icon: '📋',
+    label: 'Konfirmasi & DP',
+    desc: 'Setelah sepakat, DP 30% untuk booking tanggal. Sisa dilunasi H-3.',
+  },
+  {
+    no: '03',
+    icon: '🛒',
+    label: 'Persiapan H-1',
+    desc: 'Kami belanja bahan segar, persiapkan bumbu, dan cek kambing pilihan.',
+  },
+  {
+    no: '04',
+    icon: '🍽️',
+    label: 'Hari H',
+    desc: 'Tim datang pagi, masak fresh di lokasi Anda, hidangan tersaji tepat waktu.',
+  },
+];
+---
+
+<section id="proses" style="background: #ffffff; padding: 96px 24px;">
+  <div style="max-width: 960px; margin: 0 auto;">
+
+    <!-- Heading -->
+    <div style="text-align: center; margin-bottom: 64px;">
+      <h2 style="font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(32px,4vw,48px); color: #2D6A4F; margin-bottom: 16px; line-height: 1.2;">
+        Pesan Mudah, Acara Berkah.
+      </h2>
+    </div>
+
+    <!-- Steps -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 32px; position: relative;">
+      {steps.map(({ no, icon, label, desc }) => (
+        <div style="text-align: center;">
+          <!-- Step number circle -->
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(64,145,108,0.10); border: 2px solid rgba(64,145,108,0.25); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; position: relative;">
+            <span style="font-size: 24px;">{icon}</span>
+            <span style="position: absolute; top: -8px; right: -8px; background: #40916C; color: white; font-size: 11px; font-weight: 700; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              {no.slice(1)}
+            </span>
+          </div>
+          <h3 style="font-size: 16px; font-weight: 700; color: #1A2E1F; margin-bottom: 8px;">
+            {label}
+          </h3>
+          <p style="font-size: 14px; color: rgba(26,46,31,0.60); line-height: 1.65;">
+            {desc}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align: center; margin-top: 56px;">
+      <a
+        href="#konsultasi"
+        style="display: inline-block; background: #40916C; color: white; font-weight: 600; font-size: 16px; padding: 14px 36px; border-radius: 50px; text-decoration: none;"
+      >
+        Mulai Konsultasi Sekarang
+      </a>
+    </div>
+  </div>
+</section>

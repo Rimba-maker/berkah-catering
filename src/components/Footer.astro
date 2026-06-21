@@ -1,0 +1,104 @@
+---
+import { Leaf, Medal, WhatsappLogo, MapPin, Clock, ArrowRight } from '@phosphor-icons/react/dist/ssr';
+
+const links = [
+  { label: 'Layanan', href: '#layanan' },
+  { label: 'Paket Aqiqah', href: '#paket-aqiqah' },
+  { label: 'Paket Syukuran', href: '#paket-syukuran' },
+  { label: 'Menu', href: '#menu' },
+  { label: 'Proses Pemesanan', href: '#proses' },
+  { label: 'FAQ', href: '#faq' },
+];
+---
+
+<footer style="background: #1B3A2D; padding: 64px 24px 32px; color: rgba(255,255,255,0.70);">
+  <div style="max-width: 1152px; margin: 0 auto;">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-14">
+
+      <!-- Brand -->
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+          <span style="color: #C9A84C;">
+            <Leaf size={20} weight="bold" />
+          </span>
+          <span style="font-family: 'DM Serif Display', Georgia, serif; font-size: 20px; color: #ffffff; letter-spacing: -0.02em;">
+            Berkah Catering
+          </span>
+        </div>
+        <p style="font-size: 14px; line-height: 1.7; max-width: 240px; color: rgba(255,255,255,0.60);">
+          Hidangan Penuh Berkah, Untuk Momen Yang Tak Terlupakan.
+        </p>
+        <div style="display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap;">
+          <span style="display: inline-flex; align-items: center; gap: 5px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.30); color: #C9A84C; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 50px;">
+            <Medal size={12} weight="fill" /> Halal MUI
+          </span>
+          <span style="background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.30); color: #C9A84C; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 50px;">
+            500+ Aqiqah
+          </span>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h4 style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.40); margin-bottom: 20px;">
+          Navigasi
+        </h4>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          {links.map(({ label, href }) => (
+            <a href={href} style="font-size: 14px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s;"
+               onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Kontak -->
+      <div>
+        <h4 style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.40); margin-bottom: 20px;">
+          Hubungi Kami
+        </h4>
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="color: rgba(255,255,255,0.50); flex-shrink: 0;">
+              <WhatsappLogo size={16} weight="regular" />
+            </span>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" style="color: rgba(255,255,255,0.65); text-decoration: none;">
+              0812-3456-7890 (WhatsApp)
+            </a>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="color: rgba(255,255,255,0.50); flex-shrink: 0;">
+              <MapPin size={16} weight="regular" />
+            </span>
+            <span style="color: rgba(255,255,255,0.65);">Padang, Sumatera Barat</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="color: rgba(255,255,255,0.50); flex-shrink: 0;">
+              <Clock size={16} weight="regular" />
+            </span>
+            <span style="color: rgba(255,255,255,0.65);">Senin–Minggu, 08.00–20.00</span>
+          </div>
+        </div>
+
+        <a
+          href="#konsultasi"
+          style="display: inline-flex; align-items: center; gap: 6px; margin-top: 24px; padding: 11px 24px; background: #40916C; color: #ffffff; border-radius: 50px; font-size: 14px; font-weight: 600; text-decoration: none;"
+        >
+          Konsultasi Gratis <ArrowRight size={14} weight="bold" />
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div style="border-top: 1px solid rgba(255,255,255,0.10); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+      <p style="font-size: 13px; color: rgba(255,255,255,0.35);">
+        © 2025 Berkah Catering. All rights reserved.
+      </p>
+      <p style="font-size: 13px; color: rgba(255,255,255,0.35);">
+        Halal · Amanah · Terpercaya
+      </p>
+    </div>
+  </div>
+</footer>
