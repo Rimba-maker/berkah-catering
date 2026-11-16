@@ -1,6 +1,5 @@
-import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { CaretDown } from '@phosphor-icons/react';
+import Photo from './Photo';
 
 const faqs = [
   {
@@ -13,7 +12,7 @@ const faqs = [
   },
   {
     q: 'Apakah bisa masak di rumah saya?',
-    a: 'Bisa, dan ini yang kami rekomendasikan untuk aqiqah — masak di lokasi jadi lebih segar. Tim kami bawa peralatan lengkap.',
+    a: 'Bisa, dan ini yang kami rekomendasikan untuk aqiqah: masak di lokasi jadi lebih segar. Tim kami bawa peralatan lengkap.',
   },
   {
     q: 'Apakah ada ustadz yang mendampingi aqiqah?',
@@ -27,101 +26,52 @@ const faqs = [
     q: 'Apakah bisa pesan hanya kambingnya saja (tanpa catering)?',
     a: 'Bisa. Kami jual kambing aqiqah siap sembelih saja. Hubungi untuk harga.',
   },
-  {
-    q: 'Pembayaran via apa?',
-    a: 'Transfer bank, QRIS, cash. DP 30% saat konfirmasi.',
-  },
+  { q: 'Pembayaran via apa?', a: 'Transfer bank, QRIS, cash. DP 30% saat konfirmasi.' },
 ];
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="section-pad" style={{ backgroundColor: '#F5F3EC' }}>
-      <div className="max-w-3xl mx-auto">
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          style={{ textAlign: 'center', marginBottom: '56px' }}
-        >
-          <h2 style={{
-            fontFamily: '"DM Serif Display", Georgia, serif',
-            fontSize: 'clamp(28px, 3.5vw, 42px)',
-            color: '#2D6A4F',
-            lineHeight: 1.25,
-          }}>
-            Pertanyaan yang Sering Ditanyakan
-          </h2>
-        </motion.div>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          {faqs.map(({ q, a }, i) => (
-            <motion.div
-              key={q}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-              style={{
-                backgroundColor: '#ffffff',
-                borderRadius: '12px',
-                border: '1px solid rgba(0,0,0,0.05)',
-                overflow: 'hidden',
-              }}
-            >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: '16px',
-                  padding: '18px 22px',
-                  border: 'none',
-                  background: 'none',
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  fontFamily: 'inherit',
-                }}
-              >
-                <span style={{ fontSize: '15px', fontWeight: 600, color: '#1A2E1F', lineHeight: 1.4 }}>
-                  {q}
-                </span>
-                <motion.span
-                  animate={{ rotate: open === i ? 180 : 0 }}
-                  transition={{ duration: 0.25 }}
-                  style={{ flexShrink: 0, color: '#40916C', display: 'flex' }}
-                >
-                  <CaretDown size={18} weight="bold" />
-                </motion.span>
-              </button>
-
-              <AnimatePresence initial={false}>
-                {open === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
-                    style={{ overflow: 'hidden' }}
+    <section id="faq" className="section band-2">
+      <div className="container faq__layout">
+        <div className="faq__side">
+          <div className="sec-head" style={{ marginBottom: 0 }}>
+            <h2>Pertanyaan yang Sering Ditanyakan</h2>
+          </div>
+          <div>
+            <Photo id="39931476" slot="faq" pos="60% 50%" sizes="(min-width: 60rem) 30vw, 100vw" />
+            <span className="cap">Tangan ibu dan bayi, foto ilustrasi.</span>
+          </div>
+        </div>
+        <div className="faq__list">
+          {faqs.map(({ q, a }, i) => {
+            const isOpen = open === i;
+            const panelId = `faq-answer-${i}`;
+            return (
+              <article key={q}>
+                <h3 style={{ font: 'inherit', maxWidth: 'none' }}>
+                  <button
+                    type="button"
+                    className="faq__q"
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => setOpen(isOpen ? null : i)}
                   >
-                    <p style={{
-                      padding: '0 22px 20px',
-                      fontSize: '14px',
-                      color: 'rgba(26,46,31,0.70)',
-                      lineHeight: 1.7,
-                    }}>
-                      {a}
-                    </p>
-                  </motion.div>
+                    <span>{q}</span>
+                    <span className="mark" aria-hidden="true">
+                      {isOpen ? '−' : '+'}
+                    </span>
+                  </button>
+                </h3>
+                {isOpen && (
+                  <div id={panelId} role="region" aria-label={q} className="faq__a">
+                    <p>{a}</p>
+                  </div>
                 )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

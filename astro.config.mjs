@@ -11,6 +11,6 @@ export default defineConfig({
   base: isCI ? '/berkah-catering' : '/',
   integrations: [react()],
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });

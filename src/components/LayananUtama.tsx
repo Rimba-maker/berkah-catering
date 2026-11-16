@@ -1,180 +1,111 @@
-import { motion } from 'framer-motion';
-import { Cow, Scissors, GraduationCap, Mosque, House, Heart, ArrowRight } from '@phosphor-icons/react';
-import type { Icon } from '@phosphor-icons/react';
-import { photos } from '../config/photos';
+import { useState } from 'react';
+import Photo from './Photo';
+import type { PhotoId } from '../config/photos';
 
-const layanan: { icon: Icon; label: string; desc: string; harga: string; href: string; img: string }[] = [
+const layanan: {
+  label: string;
+  desc: string;
+  harga: string;
+  href: string;
+  img: PhotoId;
+  cap: string;
+}[] = [
   {
-    icon: Cow,
     label: 'Aqiqah',
-    desc: 'Syukuran kelahiran buah hati. Kambing pilihan, disembelih syar\'i, dimasak fresh hari H.',
+    desc: "Syukuran kelahiran buah hati. Kambing pilihan, disembelih syar'i, dimasak fresh hari H.",
     harga: 'Mulai Rp 2.8 jt',
     href: '#paket-aqiqah',
-    img: photos.layanan.aqiqah,
+    img: '37081070',
+    cap: 'Sate dan nasi, ilustrasi hidangan aqiqah.',
   },
   {
-    icon: Scissors,
     label: 'Khitanan',
-    desc: 'Syukuran khitan anak — momen penting yang harus berkesan. Catering lengkap, bisa tambah dekorasi.',
+    desc: 'Syukuran khitan anak. Momen penting yang harus berkesan. Catering lengkap, bisa tambah dekorasi.',
     harga: 'Mulai Rp 3.5 jt',
     href: '#paket-syukuran',
-    img: photos.layanan.khitanan,
+    img: '37106996',
+    cap: 'Nasi kuning berlauk, ilustrasi sajian khitanan.',
   },
   {
-    icon: GraduationCap,
     label: 'Tasyakuran Wisuda',
     desc: 'Rayakan kelulusan dengan makan-makan bersama keluarga besar. Nasi kotak atau prasmanan.',
     harga: 'Mulai Rp 1.5 jt',
     href: '#paket-syukuran',
-    img: photos.layanan.wisuda,
+    img: '37279760',
+    cap: 'Nasi kotak, ilustrasi pilihan sajian wisuda.',
   },
   {
-    icon: Mosque,
     label: 'Tahlilan & Yasinan',
     desc: 'Hidangan sederhana tapi penuh ketulusan untuk malam tahlil, 3 hari, 7 hari, 40 hari, atau 100 hari.',
     harga: 'Mulai Rp 850k',
     href: '#paket-syukuran',
-    img: photos.layanan.tahlilan,
+    img: '37073149',
+    cap: 'Nasi di atas daun pisang, ilustrasi hidangan tahlilan.',
   },
   {
-    icon: House,
     label: 'Tasyakuran Pindah Rumah',
-    desc: 'Syukuran hunian baru — mengundang tetangga & kerabat, hidangan berlimpah, berkah berlipat.',
+    desc: 'Syukuran hunian baru: mengundang tetangga & kerabat, hidangan berlimpah, berkah berlipat.',
     harga: 'Mulai Rp 2 jt',
     href: '#paket-syukuran',
-    img: photos.layanan.pindah,
+    img: '33499734',
+    cap: 'Tumpeng mini, ilustrasi syukuran rumah baru.',
   },
   {
-    icon: Heart,
     label: 'Walimahan',
     desc: 'Resepsi pernikahan sederhana & intimate. Full catering atau parsial (masak bareng keluarga).',
     harga: 'Mulai Rp 5 jt',
     href: '#paket-syukuran',
-    img: photos.layanan.walimahan,
+    img: '37205603',
+    cap: 'Meja jamuan, ilustrasi walimahan.',
   },
 ];
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const card = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
-};
-
 export default function LayananUtama() {
+  const [active, setActive] = useState(0);
   return (
-    <section id="layanan" className="section-pad" style={{ backgroundColor: '#F5F3EC' }}>
-      <div className="max-w-6xl mx-auto">
-
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center mb-14 md:mb-16"
-        >
-          <h2 style={{
-            fontFamily: '"DM Serif Display", Georgia, serif',
-            fontSize: 'clamp(28px, 4vw, 48px)',
-            color: '#2D6A4F',
-            marginBottom: '16px',
-            lineHeight: 1.2,
-          }}>
-            Kami Hadir di Momen Terpenting Keluargamu.
-          </h2>
-          <p className="max-w-lg mx-auto" style={{
-            fontSize: '18px',
-            color: 'rgba(26,46,31,0.65)',
-            lineHeight: 1.7,
-          }}>
-            Dari kelahiran si kecil sampai tasyakuran pindah rumah — kami siap melayani dengan hati.
-          </p>
-        </motion.div>
-
-        {/* Grid — 1 col mobile, 2 col tablet, 3 col desktop */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {layanan.map(({ icon: ItemIcon, label, desc, harga, href, img }) => (
-            <motion.a
-              key={label}
-              href={href}
-              variants={card}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              style={{
-                display: 'block',
-                backgroundColor: '#ffffff',
-                borderRadius: '12px',
-                overflow: 'hidden',
-                boxShadow: '0 0 0.5px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06)',
-                textDecoration: 'none',
-                border: '1px solid rgba(0,0,0,0.04)',
-                cursor: 'pointer',
-              }}
-            >
-              {/* Card image */}
-              <div style={{ height: '180px', overflow: 'hidden', position: 'relative' }}>
-                <img
-                  src={img}
-                  alt={label}
-                  loading="lazy"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-                <span style={{
-                  position: 'absolute',
-                  top: '12px',
-                  left: '12px',
-                  background: 'rgba(255,255,255,0.92)',
-                  borderRadius: '50px',
-                  padding: '6px 10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  color: '#2D6A4F',
-                }}>
-                  <ItemIcon size={18} weight="regular" />
-                </span>
-              </div>
-
-              {/* Card body */}
-              <div style={{ padding: '20px 24px 24px' }}>
-                <h3 style={{
-                  fontFamily: '"DM Serif Display", Georgia, serif',
-                  fontSize: '20px',
-                  color: '#1A2E1F',
-                  marginBottom: '8px',
-                }}>
-                  {label}
-                </h3>
-                <p style={{
-                  fontSize: '14px',
-                  color: 'rgba(26,46,31,0.65)',
-                  lineHeight: 1.65,
-                  marginBottom: '16px',
-                }}>
-                  {desc}
-                </p>
-                <span style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  color: '#40916C',
-                }}>
-                  {harga} <ArrowRight size={13} weight="bold" />
-                </span>
-              </div>
-            </motion.a>
-          ))}
-        </motion.div>
+    <section id="layanan" className="section">
+      <div className="container cols">
+        <div className="index__proof">
+          <div className="index__stack">
+            {layanan.map((l, i) => (
+              <Photo
+                key={l.img}
+                id={l.img}
+                slot={`layanan-${i + 1}`}
+                className={i === active ? 'is-on' : ''}
+                sizes="(min-width: 60rem) 40vw, 100vw"
+              />
+            ))}
+          </div>
+          <span className="cap" aria-live="polite">
+            {layanan[active]!.cap}
+          </span>
+        </div>
+        <div>
+          <div className="sec-head">
+            <h2>Kami Hadir di Momen Terpenting Keluargamu.</h2>
+            <p className="lead">
+              Dari kelahiran si kecil sampai tasyakuran pindah rumah, kami siap melayani dengan
+              hati.
+            </p>
+          </div>
+          <ul className="index__list">
+            {layanan.map(({ label, desc, harga, href }, i) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  aria-current={active === i ? 'true' : undefined}
+                  onPointerEnter={() => setActive(i)}
+                  onFocus={() => setActive(i)}
+                >
+                  <h3>{label}</h3>
+                  <span className="price">{harga}</span>
+                  <p>{desc}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

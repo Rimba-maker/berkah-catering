@@ -37,3 +37,10 @@ docs/superpowers/
 
 # Claude Code local settings
 .claude/
+.superpowers/
+
+# catatan proses desain, jangan dipublikasikan
+DESIGN.md
+PRODUCT.md
+.hallmark/
+.impeccable/

@@ -13,38 +13,77 @@ import Testimonial from '../components/Testimonial';
 import FAQ from '../components/FAQ';
 import BookingCTA from '../components/BookingCTA';
 import Footer from '../components/Footer.astro';
+import Photo from '../components/Photo';
 import '../styles/global.css';
 ---
 
 <html lang="id">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/favicon.svg`}
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>Berkah Catering — Katering Aqiqah & Syukuran Halal</title>
-    <meta name="description" content="Katering aqiqah & syukuran halal. Kambing pilihan, penyembelihan syar'i, masak fresh hari H. Konsultasi gratis." />
+    <title>Berkah Catering: Katering Aqiqah & Syukuran Halal</title>
+    <meta
+      name="description"
+      content="Katering aqiqah & syukuran halal. Kambing pilihan, penyembelihan syar'i, masak fresh hari H. Konsultasi gratis."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Archivo:wght@400;500&family=Archivo+Narrow:wght@600&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <Navbar />
-    <Hero client:load />
-    <LayananUtama client:visible />
-    <PaketAqiqah client:visible />
-    <PaketSyukuran client:visible />
-    <MenuMasakan client:visible />
-    <KelengkapanLayanan client:visible />
-    <SertifikasiHalal client:visible />
-    <ProsesPemesanan client:visible />
-    <WilayahLayanan client:visible />
-    <Testimonial client:visible />
-    <FAQ client:visible />
-    <BookingCTA client:idle />
+    <main>
+      <Hero />
+      <LayananUtama client:visible />
+      <PaketAqiqah />
+      <figure class="bleed">
+        <Photo id="36325150" slot="bleed" pos="50% 40%" sizes="100vw" className="photo--short" />
+        <figcaption class="cap container">
+          Keluarga berdoa sebelum jamuan, foto ilustrasi.
+        </figcaption>
+      </figure>
+      <PaketSyukuran client:visible />
+      <ProsesPemesanan />
+      <MenuMasakan client:visible />
+      <WilayahLayanan />
+      <KelengkapanLayanan />
+      <SertifikasiHalal />
+      <Testimonial client:visible />
+      <FAQ client:visible />
+      <BookingCTA client:visible />
+    </main>
     <Footer />
+    <style is:global>
+      html,
+      body {
+        overflow-x: clip;
+      }
+    </style>
+    <script is:inline>
+      window.hallmarkSlots = (m) => {
+        for (const [k, v] of Object.entries(m)) {
+          const s = document.querySelector(`[data-slot="${k}"]`);
+          if (!s) continue;
+          const im = new Image();
+          im.src = typeof v === 'string' ? v : v.src;
+          im.alt = (typeof v === 'object' && v.alt) || s.dataset.alt || '';
+          s.querySelectorAll(':scope > img').forEach((o) => o.remove());
+          s.prepend(im);
+        }
+      };
+      document.querySelectorAll('[data-slot] img').forEach((i) => {
+        if (i.complete && !i.naturalWidth) i.remove();
+        else i.addEventListener('error', () => i.remove(), { once: true });
+      });
+    </script>
   </body>
 </html>
